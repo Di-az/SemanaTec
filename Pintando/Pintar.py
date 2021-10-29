@@ -68,6 +68,8 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+onkey(lambda: color('orange'), 'O') #Agregando nuevo color y relacionarlo con una key del teclado
+onkey(lambda: color('cyan'), 'C') #Agregando nuevo color y relacionarlo con una key del teclado
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
