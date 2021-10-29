@@ -25,20 +25,41 @@ def square(start, end):
     end_fill()
 
 
-def circle(start, end):
-    "Draw circle from start to end."
-    pass  # TODO
-
-
+def circulo(start, end):
+    circle(end.x - start.x)
+    
+    
 def rectangle(start, end):
     "Draw rectangle from start to end."
-    pass  # TODO
 
+# drawing first side
+    up()
+    forward(start.x) # Forward turtle by l units
+    left(90) # Turn turtle by 90 degree
+    down()
+    # drawing second side
+    forward(start.y*2) # Forward turtle by w units
+    left(90) # Turn turtle by 90 degree
+    
+    # drawing third side
+    forward(end.y) # Forward turtle by l units
+    left(90) # Turn turtle by 90 degree
+    
+    # drawing fourth side
+    forward(end.y*2) # Forward turtle by w units
+    left(90) # Turn turtle by 90 degree
+    
+
+    
+    
 
 def triangle(start, end):
-    "Draw triangle from start to end."
-    pass  # TODO
-
+    up()
+    goto(start.x, start.y)
+    down()
+    goto(end.x, start.y)
+    goto((start.x+end.x)/2,end.y)
+    goto(start.x, start.y)
 
 def tap(x, y):
     "Store starting point or draw shape."
@@ -72,7 +93,7 @@ onkey(lambda: color('orange'), 'O') #Agregando nuevo color y relacionarlo con un
 onkey(lambda: color('cyan'), 'C') #Agregando nuevo color y relacionarlo con una key del teclado
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
-onkey(lambda: store('shape', circle), 'c')
+onkey(lambda: store('shape', circulo), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
 done()
