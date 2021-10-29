@@ -10,13 +10,38 @@ Exercises
 """
 #Librerias
 from random import randrange
+from random import randint
 from turtle import *
 from freegames import square, vector
 
-#Vector de velocidad cada objeto
+
+#Generar un color al azar
+def random_color():
+    a = randint(1,5)
+    if a == 1:
+        return "green"
+    if a == 2:
+        return "blue"
+    if a == 3:
+        return "orange"
+    if a == 4:
+        return "violet"
+    if a == 5:
+        return "black"
+
+
+#Vector de direccion de cada objeto
 food = vector(0, 0)
 snake = [vector(10, 0)] #La serpiente se mueve cada 10 px
-aim = vector(0, 10)    #Empieza con direccion -y
+aim = vector(0, -10)    #Empieza con direccion -y
+
+#Random color
+def color():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    rand_color = (r, g, b)
+    return rand_color
 
 #Cambio de direccion
 def change(x, y):
@@ -41,7 +66,7 @@ def move():
         update()
         return
 
-    snake.append(head)
+    snake.append(head)                      #Añadir cabeza al final del vector serpiente
 
     #Si comio
     if head == food:
@@ -54,12 +79,19 @@ def move():
     clear()
 
     for body in snake:                      #Para el tamaño de la serpiente
-        square(body.x, body.y, 9, 'black')  #Cuadro del cuerpo en cords x, y, tamaño, color
+        square(body.x, body.y, 9, snakeColor)  #Cuadro del cuerpo en cords x, y, tamaño, color
 
-    square(food.x, food.y, 9, 'green')      #Cuadro de la comida en cords x, y, tamaño, color
+    square(food.x, food.y, 9, foodColor)      #Cuadro de la comida en cords x, y, tamaño, color
     update()
     ontimer(move, 50)                       #Delay/Velocidad del juego - Default:100
 
+
+
+
+snakeColor = random_color()
+foodColor = random_color()
+while foodColor == snakeColor:
+    foodColor = random_color()
 
 setup(420, 420, 370, 0)
 hideturtle()
