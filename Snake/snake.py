@@ -35,14 +35,6 @@ food = vector(0, 0)
 snake = [vector(10, 0)] #La serpiente se mueve cada 10 px
 aim = vector(0, -10)    #Empieza con direccion -y
 
-#Random color
-def color():
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    rand_color = (r, g, b)
-    return rand_color
-
 #Cambio de direccion
 def change(x, y):
     "Change snake direction."
