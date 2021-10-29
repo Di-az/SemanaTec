@@ -3,13 +3,15 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+nTiles = 32
+tiles = list(range(nTiles)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
 #variable que lleva la cuenta del numero de taps
-global nTaps
+global nTaps, correctas
 nTaps = 0
+correctas = 0
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -33,7 +35,7 @@ def xy(count):
 
 #variable que se llama al dar un tap
 def tap(x, y):
-    global nTaps
+    global nTaps, correctas
     #se aumenta su valor por 1
     nTaps += 1
     print(nTaps)
@@ -47,9 +49,11 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        correctas += 1
+        if(correctas == nTiles):
+            print(f"Felicidades, haz terminado usando {nTaps} taps")
 
 def draw():
-    write(nTaps)
     "Draw image and tiles."
     clear()
     goto(0, 0)
@@ -68,7 +72,7 @@ def draw():
         up()
         goto(x + 2, y)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 30, 'normal'), align="center")
 
     update()
     ontimer(draw, 100)
