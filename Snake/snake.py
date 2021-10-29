@@ -29,6 +29,27 @@ def random_color():
     if a == 5:
         return "black"
 
+#Si la comida se encuentra dentro de los limites
+def foodInside():
+    return -170 <= food.x <= 160 and -170 <= food.y <= 160  #Limites menores a limites de la serpiente
+    #return -180 <= food.x <= 170 and -180 <= food.y <= 170  #Limites iguales a limites de la serpiente
+
+#Mover comida
+def moveFood():
+    ontimer(moveFood, 1000) #Mover cada 1000 milisegundos
+    move = randint(0,4)     #Randomizer de movimiento | 0 = Ningun movimiento
+    if move == 1:
+        if foodInside():
+            food.x -= 10
+    elif move == 2:
+        if foodInside():
+            food.x += 10
+    elif move == 3:
+        if foodInside():
+            food.y -= 10
+    elif move == 4:
+        if foodInside():
+            food.y += 10
 
 #Vector de direccion de cada objeto
 food = vector(0, 0)
@@ -75,17 +96,16 @@ def move():
 
     square(food.x, food.y, 9, foodColor)      #Cuadro de la comida en cords x, y, tamaño, color
     update()
-    ontimer(move, 50)                       #Delay/Velocidad del juego - Default:100
+    ontimer(move, 100)                       #Delay/Velocidad del juego - Default:100
 
 
 
-
-snakeColor = random_color()
-foodColor = random_color()
-while foodColor == snakeColor:
+snakeColor = random_color()                 #Color de serpiente
+foodColor = random_color()                  #Color de comida
+while foodColor == snakeColor:              #Si es el mismo color entonces buscar otro color
     foodColor = random_color()
 
-setup(420, 420, 370, 0)
+setup(420, 420, None, None)                     #Tamaño de la ventana
 hideturtle()
 tracer(False)
 listen()
@@ -94,4 +114,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+moveFood()
 done()
