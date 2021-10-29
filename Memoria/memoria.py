@@ -7,6 +7,10 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
+#variable que lleva la cuenta del numero de taps
+global nTaps
+nTaps = 0
+
 def square(x, y):
     "Draw white square with black outline at (x, y)."
     up()
@@ -27,7 +31,12 @@ def xy(count):
     "Convert tiles count to (x, y) coordinates."
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
+#variable que se llama al dar un tap
 def tap(x, y):
+    global nTaps
+    #se aumenta su valor por 1
+    nTaps += 1
+    print(nTaps)
     "Update mark and hidden tiles based on tap."
     spot = index(x, y)
     mark = state['mark']
@@ -40,6 +49,7 @@ def tap(x, y):
         state['mark'] = None
 
 def draw():
+    write(nTaps)
     "Draw image and tiles."
     clear()
     goto(0, 0)
