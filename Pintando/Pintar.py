@@ -33,24 +33,22 @@ def rectangle(start, end):
     "Draw rectangle from start to end."
 
 # drawing first side
-    up()
-    forward(start.x) # Forward turtle by l units
+    l = start.x - end.x
+    w = end.x - start.y
+    forward(l) # Forward turtle by l units
     left(90) # Turn turtle by 90 degree
-    down()
+    
     # drawing second side
-    forward(start.y*2) # Forward turtle by w units
+    forward(w) # Forward turtle by w units
     left(90) # Turn turtle by 90 degree
     
     # drawing third side
-    forward(end.y) # Forward turtle by l units
+    forward(l) # Forward turtle by l units
     left(90) # Turn turtle by 90 degree
     
     # drawing fourth side
-    forward(end.y*2) # Forward turtle by w units
-    left(90) # Turn turtle by 90 degree
-    
-
-    
+    forward(w) # Forward turtle by w units
+    left(90) # Turn turtle by 90 degree   
     
 
 def triangle(start, end):
